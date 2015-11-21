@@ -1,2 +1,1 @@
-# prototypes
-Framer Prototypes
+# Framer Prototypes
