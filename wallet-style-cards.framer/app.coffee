@@ -75,3 +75,4 @@ cardsUp = () ->
 	for c in cards
 		c.states.switch "up"	
 		c.position = 'up'	
+		
