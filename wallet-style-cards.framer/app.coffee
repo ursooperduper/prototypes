@@ -27,6 +27,35 @@ for c, i in cards
 	# set cards in the 'up' position
 	c.states.switchInstant 'up'
 
+# object to hold card down animations
+animation = {}
+
+# send unfocused cards down
+cardsDown = (card) ->
+	counter = 1
+	startY = 980
+	for c in cards
+		if c != card
+			animation[counter] = new Animation
+				layer: c
+				properties:
+					y: 960 + counter * 20
+			c.position = 'down'
+			animation[counter].start()
+			counter++	
+		
+# figure out what to do with cards based on position
+handleCards = (card) ->
+	cardState = card.position
+	if cardState == 'up'
+		card.states.switch 'focus'
+		card.position = 'focus'
+		cardsDown(card)
+	else
+		for c in cards
+			c.states.switch "up"	
+			c.position = 'up'
+		
 # card button events
 cardRed.on Events.Click, ->
 	handleCards(cardRed)
@@ -42,37 +71,3 @@ cardYellow.on Events.Click, ->
 
 cardBlue.on Events.Click, ->
 	handleCards(cardBlue)
-
-# object to hold card down animations
-animation = {}
-
-# figure out what to do with cards based on position
-handleCards = (card) ->
-	cardState = card.position
-	if cardState == 'up'
-		card.states.switch 'focus'
-		card.position = 'focus'
-		cardsDown(card)
-	else
-		cardsUp()
-
-# send unfocused cards down
-cardsDown = (card) ->
-	counter = 1
-	startY = 980
-	for c in cards
-		if c != card
-			animation[counter] = new Animation
-				layer: c
-				properties:
-					y: 960 + counter * 20
-			c.position = 'down'
-			animation[counter].start()
-			counter++	
-
-# bring all cards to 'up' position
-cardsUp = () ->
-	for c in cards
-		c.states.switch "up"	
-		c.position = 'up'	
-		
