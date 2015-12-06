@@ -34,3 +34,9 @@ framer/*.old.*
 framer/backup.coffee
 framer/backups/*
 framer/.*.hash
+
+# Other
+.jekyll-metadata
+Gemfile.lock
+_site
+node_modules
