@@ -1,0 +1,16 @@
+\---
+layout: base
+\---
+
+%h1<= "Prototypes"
+
+%p<
+  Below are some of the prototypes I've built using FramerJS as explorations of interesting interaction models.
+
+.work
+  {% for p in site.prototypes %}
+  .work-thumb
+    %a{ href: "{{ p.url }}" }
+      %img{ src: "/images/{{ p.thumb }}", alt: "{{ p.name }}" }
+      {{ p.name }}
+  {% endfor %}

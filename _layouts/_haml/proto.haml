@@ -1,0 +1,20 @@
+\---
+layout: base
+\---
+
+%h2 {{ page.name }}
+
+.prototype
+  .proto-ani
+    %img{ src: "/images/{{ page.ani }}", alt: "{{ page.name }}" }
+
+  .proto-desc
+    {{ content }}
+
+    %p
+      %a{ href: "/{{ page.prototype-dir }}", target: "_blank" }
+        View the FramerJS prototype
+
+    %p
+      %a{ href: "{{ page.code }}", target: "_blank" }
+        View the prototype code

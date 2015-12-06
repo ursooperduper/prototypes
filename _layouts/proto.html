@@ -1,0 +1,22 @@
+---
+layout: base
+---
+<h2>{{ page.name }}</h2>
+<div class='prototype'>
+  <div class='proto-ani'>
+    <img alt='{{ page.name }}' src='/images/{{ page.ani }}'>
+  </div>
+  <div class='proto-desc'>
+    {{ content }}
+    <p>
+      <a href='/{{ page.prototype-dir }}' target='_blank'>
+        View the FramerJS prototype
+      </a>
+    </p>
+    <p>
+      <a href='{{ page.code }}' target='_blank'>
+        View the prototype code
+      </a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+title: "// this might work"
+email: sarah@sooperduper.com
+name: "Sarah Kuehnle"
+description: "Sarah Kuehnle is a generalist interested in product design, front-end and mobile development, and you."
+url: http://ursooperduper.github.io
+twitter_username: ursooperduper
+github_username: ursooperduper
+instagram_username: ursooperduper
+dribbble_username: ursooperduper
+linkedin_username: sarahkuehnle
+exclude:
+ - Gemfile
+ - gulpfile.js
+ - node_modules
+ - package.json
+ - Rakefile
+ - README.md
+ - tmux-cheat-sess
+ - vendor
+encoding: "utf-8"
+baseurl: "/prototypes"
+markdown: kramdown
+kramdown:
+    input: GFM
+lsi: false
+excerpt_separator: "\n\n"
+collections:
+  prototypes:
+    output: true
+    permalink: /:path/
