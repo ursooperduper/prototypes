@@ -16,8 +16,8 @@ Utils.globalLayers(airbnbStyleMenuLayers)
 
 # Set up default animation
 Framer.Defaults.Animation =
-	curve: "spring(200,30,0)"
-	time: .4
+  curve: "spring(200,30,0)"
+  time: .4
 
 # Initialize variables
 menuVisible = false
@@ -31,69 +31,70 @@ menu.superLayer = container
 
 # Set up scroll component for the feed
 scroll = new ScrollComponent
-    scrollHorizontal: false
-    width: 640
-    height: 1136
-    speedY: .8
+  scrollHorizontal: false
+  width: 640
+  height: 1136
+  speedY: .8
 
 scroll.superLayer = feedContent
 card.superLayer = scroll.content
 
 cardLayer = {}
 for x in [1...20] by 1
-	cardLayer[x] = card.copy()
-	cardLayer[x].y = card.y + (20 + card.height) * x
-	cardLayer[x].superLayer = scroll.content
+  cardLayer[x] = card.copy()
+  cardLayer[x].y = card.y + (20 + card.height) * x
+  cardLayer[x].superLayer = scroll.content
 
 # Put the feed top bar and button on top of the scrolling content
 topBarFeed.bringToFront()
 burgBtnFeed.bringToFront()
 
-sections = [profileContent, feedContent, groupsContent, eventsContent, settingsContent]
+sections =
+[profileContent, feedContent, groupsContent, eventsContent, settingsContent]
 
 for s, i in sections
-	s.superLayer = container
-	s.visible = true
-	s.originX = 0
-	s.originY = 0.5
+  s.superLayer = container
+  s.visible = true
+  s.originX = 0
+  s.originY = 0.5
 
-	s.states.add
-		reduced:
-			x: 420
-			scale: 0.55
-			rotationY: -50
-			blur: 3
-		inview:
-			x: 0
-			scale: 1
-			rotationY: 0
-			blur: 0
-		offscreen:
-			x: 650
-			scale: 0.55
-			rotationY: -50
-			blur: 3
+  s.states.add
+    reduced:
+      x: 420
+      scale: 0.55
+      rotationY: -50
+      blur: 3
+    inview:
+      x: 0
+      scale: 1
+      rotationY: 0
+      blur: 0
+    offscreen:
+      x: 650
+      scale: 0.55
+      rotationY: -50
+      blur: 3
 
-	# Move content sections offscreen for now (except the feed)
-	if s != feedContent
-		s.states.switchInstant "offscreen"
+  # Move content sections offscreen for now (except the feed)
+  if s != feedContent
+    s.states.switchInstant "offscreen"
 
 handleSections = (nextSection, menuInView) ->
-	if menuInView
-		if nextSection != currentSection
-			nextSection.states.switch "reduced"
-			currentSection.states.switch "offscreen"
+  if menuInView
+    if nextSection != currentSection
+      nextSection.states.switch "reduced"
+      currentSection.states.switch "offscreen"
 
-			nextSection.states.switch "inview"
+      nextSection.states.switch "inview"
 
-			currentSection = nextSection
-			menuVisible = false
-		else
-			currentSection.states.switch "inview"
-			menuVisible = false
-	else
-		currentSection.states.switch "reduced"
-		menuVisible = true
+      currentSection = nextSection
+      menuVisible = false
+    else
+      currentSection.states.switch "inview"
+      menuVisible = false
+  else
+    currentSection.states.switch "reduced"
+    menuVisible = true
 
 # Content Button
 profileSubBtn = new Layer
@@ -102,13 +103,14 @@ groupsSubBtn = new Layer
 eventsSubBtn = new Layer
 settingsSubBtn = new Layer
 
-sectionBtns = [profileSubBtn, feedSubBtn, groupsSubBtn, eventsSubBtn, settingsSubBtn]
+sectionBtns =
+[profileSubBtn, feedSubBtn, groupsSubBtn, eventsSubBtn, settingsSubBtn]
 
 for sb in sectionBtns
-	sb.width = 640
-	sb.height = 1043
-	sb.y = 92
-	sb.opacity = 0
+  sb.width = 640
+  sb.height = 1043
+  sb.y = 92
+  sb.opacity = 0
 
 feedContent.addSubLayer(feedSubBtn)
 profileContent.addSubLayer(profileSubBtn)
@@ -118,56 +120,56 @@ settingsContent.addSubLayer(settingsSubBtn)
 
 # Content Buttons
 topBarFeed.on Events.Click, ->
-	handleSections(currentSection, true)
+  handleSections(currentSection, true)
 
 scroll.on Events.Click, ->
-	handleSections(currentSection , true)
+  handleSections(currentSection , true)
 
 profileSubBtn.on Events.Click, ->
-	handleSections(currentSection , true)
+  handleSections(currentSection , true)
 
 groupsSubBtn.on Events.Click, ->
-	handleSections(currentSection , true)
+  handleSections(currentSection , true)
 
 eventsSubBtn.on Events.Click, ->
-	handleSections(currentSection , true)
+  handleSections(currentSection , true)
 
 settingsSubBtn.on Events.Click, ->
-	handleSections(currentSection , true)
+  handleSections(currentSection , true)
 
 # Burger Menus
 burgBtnFeed.on Events.Click, ->
-	handleSections(currentSection, false)
+  handleSections(currentSection, false)
 
 burgBtnProfile.on Events.Click,  ->
-	handleSections(currentSection, false)
+  handleSections(currentSection, false)
 
 burgBtnGroups.on Events.Click, ->
-	handleSections(currentSection, false)
+  handleSections(currentSection, false)
 
 burgBtnEvents.on Events.Click, ->
-	handleSections(currentSection, false)
+  handleSections(currentSection, false)
 
 burgBtnSettings.on Events.Click, ->
-	handleSections(currentSection, false)
+  handleSections(currentSection, false)
 
 # Menu Buttons
 btnFeed.on Events.Click, ->
-	if menuVisible
-		handleSections(feedContent, true)
+  if menuVisible
+    handleSections(feedContent, true)
 
 btnProfile.on Events.Click, ->
-	if menuVisible
-		handleSections(profileContent, true)
+  if menuVisible
+    handleSections(profileContent, true)
 
 btnGroups.on Events.Click, ->
-	if menuVisible
-		handleSections(groupsContent, true)
+  if menuVisible
+    handleSections(groupsContent, true)
 
 btnEvents.on Events.Click, ->
-	if menuVisible
-		handleSections(eventsContent, true)
+  if menuVisible
+    handleSections(eventsContent, true)
 
 btnSettings.on Events.Click, ->
-	if menuVisible
-		handleSections(settingsContent, true)
+  if menuVisible
+    handleSections(settingsContent, true)
