@@ -6,13 +6,13 @@ layout: base
 
 .prototype
   .proto-ani
-    %img{ src: "/{{ site.baseurl }}/images/{{ page.ani }}", alt: "{{ page.name }}" }
+    %img{ src: "{{ site.baseurl }}/images/{{ page.ani }}", alt: "{{ page.name }}" }
 
   .proto-desc
     {{ content }}
 
     %p
-      %a{ href: "/{{ site.baseurl }}/{{ page.prototype-dir }}", target: "_blank" }
+      %a{ href: "{{ site.baseurl }}{{ page.prototype-dir }}", target: "_blank" }
         View the FramerJS prototype
 
     %p
