@@ -10,7 +10,7 @@ layout: base
 .work
   {% for p in site.prototypes %}
   .work-thumb
-    %a{ href: "{{ p.url }}" }
-      %img{ src: "/images/{{ p.thumb }}", alt: "{{ p.name }}" }
+    %a{ href: "{{ site.baseurl }}{{ p.url }}" }
+      %img{ src: "{{ site.baseurl }}/images/{{ p.thumb }}", alt: "{{ p.name }}" }
       {{ p.name }}
   {% endfor %}

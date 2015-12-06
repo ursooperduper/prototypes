@@ -6,8 +6,8 @@ layout: base
 <div class='work'>
   {% for p in site.prototypes %}
   <div class='work-thumb'>
-    <a href='{{ p.url }}'>
-      <img alt='{{ p.name }}' src='/images/{{ p.thumb }}'>
+    <a href='{{ site.baseurl }}{{ p.url }}'>
+      <img alt='{{ p.name }}' src='{{ site.baseurl }}/images/{{ p.thumb }}'>
       {{ p.name }}
     </a>
   </div>
