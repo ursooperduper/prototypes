@@ -3,7 +3,7 @@
 # November 21, 2015
 
 Framer.Device.background.backgroundColor = "#303030"
-Framer.Device.deviceType = "iPhone-5s-silver"
+Framer.Device.deviceType = "iphone-5s-silver"
 
 mLayers = Framer.Importer.load "imported/menu"
 Utils.globalLayers(mLayers)
@@ -30,14 +30,14 @@ for btn in btns
 			opacity: 0
 			scale: .2
 			rotation: btn.rotationZ
-			
+
 	btn.states.switchInstant "stateHidden"
 
 chevUp.states.add
 	stateUp:
 		rotation: 0
 		y: 26
-	stateDown: 
+	stateDown:
 		rotation: 180
 		y: 30
 
@@ -50,7 +50,7 @@ animationBop = new Animation
         scaleY: 1.2
     curve: "ease-in-out"
     time: .1
- 
+
 animationBopBack = animationBop.reverse()
 animationBop.on(Events.AnimationEnd, animationBopBack.start)
 
@@ -58,18 +58,18 @@ toggleMenu = () ->
 	animationBop.start()
 	if menuVisible == false
 		chevUp.states.switch("stateDown")
-		
+
 		for btn, i in btns
 			btn.states.switch "stateVisible", delay: .02 * i, time: .1
-		
+
 		menuVisible = !menuVisible
 	else
 		chevUp.states.switch("stateUp")
-		
+
 		for btn, i in btns
 			btn.states.switch "stateHidden", delay: .03 * i, time: .1
-			
+
 		menuVisible = !menuVisible
-		
+
 btnMain.on Events.Click, ->
 	toggleMenu()

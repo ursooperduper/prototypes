@@ -3,7 +3,7 @@
 # November 21, 2015
 
 Framer.Device.background.backgroundColor = "#303030"
-Framer.Device.deviceType = "iPhone-5s-silver"
+Framer.Device.deviceType = "iphone-5s-silver"
 
 wLayers = Framer.Importer.load "imported/wallet-style-cards"
 # beta property, be warned
