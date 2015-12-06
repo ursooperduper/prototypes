@@ -6,7 +6,7 @@
 
 # Page set up
 Framer.Device.background.backgroundColor = "#303030"
-Framer.Device.deviceType = "iPhone-5s-silver"
+Framer.Device.deviceType = "iphone-5s-silver"
 
 #  Import art work
 airbnbStyleMenuLayers = Framer.Importer.load "imported/airbnb-style-menu"
@@ -45,7 +45,7 @@ for x in [1...20] by 1
 	cardLayer[x].y = card.y + (20 + card.height) * x
 	cardLayer[x].superLayer = scroll.content
 
-# Put the feed top bar and button on top of the scrolling content 
+# Put the feed top bar and button on top of the scrolling content
 topBarFeed.bringToFront()
 burgBtnFeed.bringToFront()
 
@@ -68,24 +68,24 @@ for s, i in sections
 			scale: 1
 			rotationY: 0
 			blur: 0
-		offscreen: 
+		offscreen:
 			x: 650
 			scale: 0.55
 			rotationY: -50
 			blur: 3
-		
+
 	# Move content sections offscreen for now (except the feed)
 	if s != feedContent
 		s.states.switchInstant "offscreen"
-		
+
 handleSections = (nextSection, menuInView) ->
 	if menuInView
 		if nextSection != currentSection
 			nextSection.states.switch "reduced"
 			currentSection.states.switch "offscreen"
-			
+
 			nextSection.states.switch "inview"
-			
+
 			currentSection = nextSection
 			menuVisible = false
 		else
@@ -104,10 +104,10 @@ settingsSubBtn = new Layer
 
 sectionBtns = [profileSubBtn, feedSubBtn, groupsSubBtn, eventsSubBtn, settingsSubBtn]
 
-for sb in sectionBtns	
+for sb in sectionBtns
 	sb.width = 640
 	sb.height = 1043
-	sb.y = 92	
+	sb.y = 92
 	sb.opacity = 0
 
 feedContent.addSubLayer(feedSubBtn)
@@ -117,7 +117,7 @@ eventsContent.addSubLayer(eventsSubBtn)
 settingsContent.addSubLayer(settingsSubBtn)
 
 # Content Buttons
-topBarFeed.on Events.Click, -> 
+topBarFeed.on Events.Click, ->
 	handleSections(currentSection, true)
 
 scroll.on Events.Click, ->
@@ -138,25 +138,25 @@ settingsSubBtn.on Events.Click, ->
 # Burger Menus
 burgBtnFeed.on Events.Click, ->
 	handleSections(currentSection, false)
-	
+
 burgBtnProfile.on Events.Click,  ->
 	handleSections(currentSection, false)
 
 burgBtnGroups.on Events.Click, ->
 	handleSections(currentSection, false)
 
-burgBtnEvents.on Events.Click, -> 
-	handleSections(currentSection, false)	
-	
+burgBtnEvents.on Events.Click, ->
+	handleSections(currentSection, false)
+
 burgBtnSettings.on Events.Click, ->
 	handleSections(currentSection, false)
-	
+
 # Menu Buttons
-btnFeed.on Events.Click, -> 
+btnFeed.on Events.Click, ->
 	if menuVisible
 		handleSections(feedContent, true)
 
-btnProfile.on Events.Click, -> 
+btnProfile.on Events.Click, ->
 	if menuVisible
 		handleSections(profileContent, true)
 
@@ -164,10 +164,10 @@ btnGroups.on Events.Click, ->
 	if menuVisible
 		handleSections(groupsContent, true)
 
-btnEvents.on Events.Click, -> 
+btnEvents.on Events.Click, ->
 	if menuVisible
 		handleSections(eventsContent, true)
 
-btnSettings.on Events.Click, -> 
+btnSettings.on Events.Click, ->
 	if menuVisible
 		handleSections(settingsContent, true)

@@ -3,7 +3,7 @@
 # November 22, 2015
 
 Framer.Device.background.backgroundColor = "#303030"
-Framer.Device.deviceType = "iPhone-5s-silver"
+Framer.Device.deviceType = "iphone-5s-silver"
 
 pinterestMenuLayers = Framer.Importer.load "imported/pinterest-menu"
 
@@ -59,38 +59,38 @@ for pl in pressLabels
 
 # set up button animations based on touch location
 setupButtons = (xPos, yPos, loc) ->
-	
+
 	if loc == "left"
 		pinX = xPos
 		pinY = yPos - 140
 		heartX = xPos + 108
 		heartY = yPos - 106
 		sendX = xPos + 140
-		sendY = yPos	
+		sendY = yPos
 	else if loc == "middle"
 		pinX = xPos - 106
 		pinY = yPos - 88
 		heartX = xPos
 		heartY = yPos - 160
 		sendX = xPos + 112
-		sendY = yPos - 88		
-	else if loc == "right"	
+		sendY = yPos - 88
+	else if loc == "right"
 		pinX = xPos - 140
 		pinY = yPos
 		heartX = xPos - 100
 		heartY = yPos - 102
 		sendX = xPos
 		sendY = yPos - 140
-		
+
 	for btn in pressBtns
-		btn.states.add 
-			off: 
+		btn.states.add
+			off:
 				x: xPos
 				y: yPos
 				opacity: 0
 				scale: 0
 		btn.states.switchInstant "off"
- 
+
 	aniPin = new Animation
 	    layer: pressPinBtn
 	    properties:
@@ -98,7 +98,7 @@ setupButtons = (xPos, yPos, loc) ->
 	        y: pinY
 	        scale: 1
 	        opacity: 1
-	        
+
 	aniHeart = new Animation
 	    layer: pressHeartBtn
 	    properties:
@@ -106,7 +106,7 @@ setupButtons = (xPos, yPos, loc) ->
 	        y: heartY
 	        scale: 1
 	        opacity: 1
- 
+
  	aniSend = new Animation
 	    layer: pressSendBtn
 	    properties:
@@ -122,8 +122,8 @@ setupButtons = (xPos, yPos, loc) ->
 # handle touches on the bike picture
 bikePic.on Events.TouchStart, (event, layer) ->
 	touchEvent = Events.touchEvent(event)
-	
-	# determine if this prototype is being run on 
+
+	# determine if this prototype is being run on
 	# the phone or computer so we can get the
 	# correct coordinates for touches
 	if Utils.isPhone() || Utils.isTablet()
@@ -136,12 +136,12 @@ bikePic.on Events.TouchStart, (event, layer) ->
 		tY = touchEvent.offsetY + layer.y
 		pressRingXPos = tX
 		pressRingYPos = tY + 80
-		
+
 	pressRing.x = pressRingXPos
 	pressRing.y = pressRingYPos
-	
-	# determine which section of the bike pic 
-	# is being touched so we can orient the buttons 
+
+	# determine which section of the bike pic
+	# is being touched so we can orient the buttons
 	# correctly
 	if tX > 0 && tX < 88 # left side
 		loc = "left"
@@ -149,11 +149,11 @@ bikePic.on Events.TouchStart, (event, layer) ->
 		loc = "middle"
 	else if tX > 481 && tX < 561 # right side
 		loc = "right"
-	
+
 	# show the buttons
 	pressRing.states.switch "on"
 	setupButtons(pressRingXPos, pressRingYPos, loc)
-	
+
 # hide the buttons when the touch ends
 bikePic.on Events.TouchEnd, ->
 	pressRing.states.switch "off"
@@ -162,18 +162,18 @@ bikePic.on Events.TouchEnd, ->
 
 # pressPinBtn.on Events.MouseOver, (event, layer) ->
 # 	pinSelected.states.switch "on"
-# 
+#
 # pressHeartBtn.on Events.MouseOver, (event, layer) ->
 # 	heartSelected.states.switch "on"
-# 
+#
 # pressSendBtn.on Events.MouseOver, (event, layer) ->
-# 	sendSelected.states.switch "on"	
-# 	
+# 	sendSelected.states.switch "on"
+#
 # pressPinBtn.on Events.MouseOut, (event, layer) ->
 # 	pinSelected.states.switch "off"
-# 
+#
 # pressHeartBtn.on Events.MouseOut, (event, layer) ->
 # 	heartSelected.states.switch "off"
-# 
+#
 # pressSendBtn.on Events.MouseOut, (event, layer) ->
-# 	sendSelected.states.switch "off"	
+# 	sendSelected.states.switch "off"

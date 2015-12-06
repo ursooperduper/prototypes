@@ -3,7 +3,7 @@
 # November 21, 2015
 
 Framer.Device.background.backgroundColor = "#303030"
-Framer.Device.deviceType = "iPhone-5s-silver"
+Framer.Device.deviceType = "iphone-5s-silver"
 
 wLayers = Framer.Importer.load "imported/wallet-style-cards"
 # beta property, be warned
@@ -42,8 +42,8 @@ cardsDown = (card) ->
 					y: 960 + counter * 20
 			c.position = 'down'
 			animation[counter].start()
-			counter++	
-		
+			counter++
+
 # figure out what to do with cards based on position
 handleCards = (card) ->
 	cardState = card.position
@@ -53,9 +53,9 @@ handleCards = (card) ->
 		cardsDown(card)
 	else
 		for c in cards
-			c.states.switch "up"	
+			c.states.switch "up"
 			c.position = 'up'
-		
+
 # card button events
 cardRed.on Events.Click, ->
 	handleCards(cardRed)
@@ -65,7 +65,7 @@ cardOrange.on Events.Click, ->
 
 cardGreen.on Events.Click, ->
 	handleCards(cardGreen)
-	
+
 cardYellow.on Events.Click, ->
 	handleCards(cardYellow)
 
